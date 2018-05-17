@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Categorie {Physique, Special, Statut};
 
-public class Attaque : MonoBehaviour {
+public abstract class Attaque : MonoBehaviour {
 
 	public PhysicType type;
 	public Categorie categorie;
@@ -12,7 +12,7 @@ public class Attaque : MonoBehaviour {
 	public int puissance;
 	public int precision;
 
-	public perso pers;
+	public Move pers;
 
 	public float lastSend;
 
@@ -24,4 +24,6 @@ public class Attaque : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
+
+	public abstract void Fire();
 }
