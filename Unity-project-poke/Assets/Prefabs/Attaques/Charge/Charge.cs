@@ -21,9 +21,11 @@ public class Charge : Attaque {
 
 			RaycastHit2D[] hits = Physics2D.RaycastAll(pers.transform.position + new Vector3(0.08f, -0.1f, 0), dir, 0.08f);
 			int num = 0;
-			if (hits.Length > 0)
-				num = (hits[0].transform.gameObject == pers.gameObject) ? 1 : 0;
-			if (hits.Length >= 2 && hits[num].transform.gameObject.GetComponent<statistics>()) {
+			for ( ; num < hits.Length ; num++) {
+				if (hits[num].transform.gameObject != pers.gameObject && hits[num].transform.gameObject.GetComponent<statistics>())
+					break ;
+			}
+			if (hits.Length >= 2 && num < hits.Length) {
 				hits[num].transform.gameObject.GetComponent<statistics>().SetDamage(this, pers.GetComponent<statistics>());
 				power = 0;
 			}

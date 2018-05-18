@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class perso : MonoBehaviour {
 
 	private Move move;
 	public Attaque[] attaques = new Attaque[4];
 
+	private Text zoneText;
+	private Text destrucText;
+
 	// Use this for initialization
 	void Start () {
 		move = GetComponent<Move>();
+		zoneText = GameObject.Find("ZoneText").GetComponent<Text>();
+		destrucText = GameObject.Find("DestrucText").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -18,6 +24,7 @@ public class perso : MonoBehaviour {
 		Move();
 		if (Input.GetKeyDown("space"))
 			attaques[0].Fire();
+		UpdateZone();
 	}
 
 	void Orientation() {
@@ -48,5 +55,16 @@ public class perso : MonoBehaviour {
     	Dresseur dresseur = other.gameObject.GetComponent<Dresseur>();
         if (dresseur)
         	dresseur.agro = gameObject;
+    }
+
+    void UpdateZone() {
+    	RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.back, 0.08f);
+    	for (int i = 0 ; i < hits.Length ; i++) {
+    		if (hits[i].transform.gameObject.layer == LayerMask.NameToLayer("Zone")) {
+    			zoneText.text = hits[i].transform.gameObject.GetComponent<Zone>().name;
+    			destrucText.text = hits[i].transform.gameObject.GetComponent<Zone>().destruc.ToString() + " %";
+    			break;
+    		}
+    	}
     }
 }
