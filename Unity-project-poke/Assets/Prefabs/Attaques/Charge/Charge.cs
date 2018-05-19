@@ -19,7 +19,7 @@ public class Charge : Attaque {
 			pers.transform.Translate(dir * power * Time.deltaTime);
 			power /= 2;
 
-			RaycastHit2D[] hits = Physics2D.RaycastAll(pers.transform.position + new Vector3(0.08f, -0.1f, 0), dir, 0.08f);
+			RaycastHit2D[] hits = Physics2D.RaycastAll(pers.Center(), dir, pers.Radius());
 			int num = 0;
 			for ( ; num < hits.Length ; num++) {
 				if (hits[num].transform.gameObject != pers.gameObject && hits[num].transform.gameObject.GetComponent<statistics>())

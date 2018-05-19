@@ -19,8 +19,10 @@ public class Batiment : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (old_pv == -1)
+		if (old_pv == -1) {
+			print(GetComponent<Renderer>().bounds.size.x);
 			old_pv = stat.PVActu;
+		}
 		if (old_pv != stat.PVActu) {
 			if (((old_pv * 100) / stat.PV) / 20 != ((stat.PVActu * 100) / stat.PV) / 20) {
 				Dresseur instance = Instantiate(dresseur, transform.position + popOfset * 0.16f, Quaternion.Euler(0, 0, 0));

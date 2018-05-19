@@ -5,10 +5,12 @@ using UnityEngine;
 public class Move : MonoBehaviour {
 
 	private Animator animator;
+	private CircleCollider2D collider;
 
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
+		collider = GetComponent<CircleCollider2D>();
 		animator.speed = 0;
 	}
 	
@@ -54,5 +56,13 @@ public class Move : MonoBehaviour {
 		if (animator.GetBool("left"))
 			return Vector3.left;
 		return Vector3.right;
+	}
+
+	public Vector3 Center() {
+		return transform.position + new Vector3(collider.offset.x, collider.offset.y, 0);
+	}
+
+	public float Radius() {
+		return collider.radius;
 	}
 }

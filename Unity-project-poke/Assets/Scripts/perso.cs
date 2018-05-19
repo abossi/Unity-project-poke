@@ -20,9 +20,9 @@ public class perso : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Orientation();
+		//Orientation();
 		Move();
-		if (Input.GetKeyDown("space"))
+		if (Input.GetKeyDown("1"))
 			attaques[0].Fire();
 		UpdateZone();
 	}
@@ -37,15 +37,34 @@ public class perso : MonoBehaviour {
 
 	void Move() {
 		Vector3 vec = Vector3.zero;
+		if (Input.GetKeyDown("up"))
+			move.Orientation(180);
+		if (Input.GetKeyDown("down"))
+			move.Orientation(0);
+		if (Input.GetKeyDown("right"))
+			move.Orientation(90);
+		if (Input.GetKeyDown("left"))
+			move.Orientation(-90);
 
-		if (Input.GetKey("w"))
+		if (Input.GetKey("up"))
 			vec.y += 1;
-		if (Input.GetKey("s"))
+		if (Input.GetKey("down"))
 			vec.y -= 1;
-		if (Input.GetKey("d"))
+		if (Input.GetKey("right"))
 			vec.x += 1;
-		if (Input.GetKey("a"))
+		if (Input.GetKey("left"))
 			vec.x -= 1;
+
+		if (Input.GetKeyUp("up") || Input.GetKeyUp("down") || Input.GetKeyUp("left") || Input.GetKeyUp("right")) {
+			if (vec.x == 1)
+				move.Orientation(90);
+			else if (vec.x == -1)
+				move.Orientation(-90);
+			else if (vec.y == 1)
+				move.Orientation(180);
+			else if (vec.y == -1)
+				move.Orientation(0);
+		}
 
 		move.Moving(vec);
 	}
