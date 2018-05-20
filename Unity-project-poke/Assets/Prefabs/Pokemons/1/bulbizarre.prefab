@@ -185,16 +185,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb591d16dee524565b77ddcd214bca64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PVBasic: 35
-  attaqueBasic: 55
-  defenseBasic: 40
-  attaqueSpeBasic: 50
-  defenseSpeBasic: 50
-  vitesseBasic: 90
-  XPBasic: 82
-  courbeXP: 2
-  type1: 5
-  type2: 0
+  PVBasic: 45
+  attaqueBasic: 49
+  defenseBasic: 49
+  attaqueSpeBasic: 65
+  defenseSpeBasic: 65
+  vitesseBasic: 45
+  XPBasic: 64
+  courbeXP: 3
+  type1: 11
+  type2: 12
   lifeInGUI: 0
   lifeBar: {fileID: 1166052619397436, guid: 584286492f6f84412997359ea69fe027, type: 2}
   PV: 35

@@ -6,8 +6,8 @@ public class Dresseur : MonoBehaviour {
 
 	private Move move;
 	public GameObject agro;
-	public List<GameObject> pokemons;
-	public GameObject pokemonActif;
+	public List<statistics> pokemons;
+	private int pokemonCount = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +20,17 @@ public class Dresseur : MonoBehaviour {
 	}
 
 	void Orientation() {
+		if (agro && agro.GetComponent<perso>().justDead) {
+			agro = null;
+			pokemonCount = 0;
+			for (int i = 0 ; i < pokemons.Count ; i++) {
+				pokemons[i].PVActu = pokemons[i].PV;
+				pokemons[i].transform.SetParent(transform);
+				pokemons[pokemonCount].transform.position += Vector3.zero;
+				pokemons[i].transform.gameObject.SetActive(false);
+				pokemons[i].GetComponent<AIPokemon>().agro = null;
+			}
+		}
 		if (agro) {
 			Vector3 pz = agro.transform.position;
 			pz.z = 0;
@@ -50,18 +61,25 @@ public class Dresseur : MonoBehaviour {
 		else
 			move.Moving(vec);
 
-		if (!pokemonActif && pokemons.Count != 0 && dist <= 1.5f) {
-			SendPoke(vec);
+		if ((pokemonCount == 0 || pokemons[pokemonCount - 1].PVActu == 0) && pokemons.Count != pokemonCount && dist <= 1.5f) {
+			SendPoke((dist < 1) ? -vec : vec);
 		}
-		else if (pokemons.Count == 0 && !pokemonActif) {
+		else if (pokemons.Count == pokemonCount && pokemonCount != 0 && pokemons[pokemonCount - 1].PVActu == 0) {
+			for (int i = 0 ; i < pokemons.Count ; i++)
+				pokemons[i].transform.SetParent(transform);
 			Destroy(gameObject);
 			return ;
 		}
 	}
 
 	void SendPoke(Vector3 vec) {
-		pokemonActif = Instantiate(pokemons[0], transform.position + vec * 0.5f, Quaternion.Euler(0, 0, 0));
-		pokemons.RemoveAt(0);
-		pokemonActif.GetComponent<AIPokemon>().agro = agro;
+		if (pokemonCount != 0) {
+			pokemons[pokemonCount - 1].transform.gameObject.SetActive(false);
+		}
+		pokemons[pokemonCount].transform.position += vec * 0.5f;
+		pokemons[pokemonCount].transform.gameObject.SetActive(true);
+		pokemons[pokemonCount].GetComponent<AIPokemon>().agro = agro;
+		pokemons[pokemonCount].transform.SetParent(null);
+		pokemonCount++;
 	}
 }

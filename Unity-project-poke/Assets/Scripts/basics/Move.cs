@@ -6,11 +6,13 @@ public class Move : MonoBehaviour {
 
 	private Animator animator;
 	private CircleCollider2D collider;
+	private statistics stat;
 
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
 		collider = GetComponent<CircleCollider2D>();
+		stat = GetComponent<statistics>();
 		animator.speed = 0;
 	}
 	
@@ -44,6 +46,8 @@ public class Move : MonoBehaviour {
 			animator.speed = 1;
 		else
 			animator.speed = 0;
+
+		vec *= ((float)stat.vitesse + 100f) / 200.0f;
 
 		transform.Translate(vec * Time.deltaTime);
 	}

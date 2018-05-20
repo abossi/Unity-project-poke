@@ -78,7 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb591d16dee524565b77ddcd214bca64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PVBasic: 35
+  autoDestroy: 1
+  PVBasic: 15
   attaqueBasic: 55
   defenseBasic: 40
   attaqueSpeBasic: 50
@@ -89,7 +90,7 @@ MonoBehaviour:
   type1: 11
   type2: 0
   lifeInGUI: 0
-  lifeBar: {fileID: 0}
+  lifeBar: {fileID: 1166052619397436, guid: 584286492f6f84412997359ea69fe027, type: 2}
   PV: 35
   attaque: 55
   defense: 40

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class perso : MonoBehaviour {
 
 	private Move move;
+	[HideInInspector]public HealZone lastHealZone;
+	[HideInInspector]public bool justDead = false;
+	private statistics stat;
 	public Attaque[] attaques = new Attaque[4];
 
 	private Text zoneText;
@@ -14,6 +17,7 @@ public class perso : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		move = GetComponent<Move>();
+		stat = GetComponent<statistics>();
 		zoneText = GameObject.Find("ZoneText").GetComponent<Text>();
 		destrucText = GameObject.Find("DestrucText").GetComponent<Text>();
 	}
@@ -36,6 +40,14 @@ public class perso : MonoBehaviour {
 	}
 
 	void Move() {
+		if (stat.PVActu == 0) {
+			transform.position = lastHealZone.transform.position;
+			stat.PVActu = stat.PV;
+			justDead = true;
+			return ;
+		}
+		justDead = false;
+
 		Vector3 vec = Vector3.zero;
 		if (Input.GetKeyDown("up"))
 			move.Orientation(180);
@@ -72,8 +84,10 @@ public class perso : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
     {
     	Dresseur dresseur = other.gameObject.GetComponent<Dresseur>();
-        if (dresseur)
+        if (dresseur) {
         	dresseur.agro = gameObject;
+			return ;
+		}
     }
 
     void UpdateZone() {

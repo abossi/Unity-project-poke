@@ -6,6 +6,7 @@ public class HealZone : MonoBehaviour {
 
 	int time;
 	int old_time;
+	List<statistics> listToHeal = new List<statistics>();
 
 	// Use this for initialization
 	void Start () {
@@ -21,12 +22,36 @@ public class HealZone : MonoBehaviour {
 	void FixedUpdate () {
 		old_time = time;
 		time = (int)Time.time;
+        if (time != old_time) {
+			for (int i = 0 ; i < listToHeal.Count ; i++) {
+				if (listToHeal[i].PVActu < listToHeal[i].PV) {
+					listToHeal[i].PVActu++;
+				}
+			}
+		}
 	}
 
-	void OnTriggerStay2D(Collider2D other)
+	void OnTriggerEnter2D(Collider2D other)
+    {
+		perso pers = other.gameObject.GetComponent<perso>();
+		if (pers && !other.isTrigger) {
+			pers.lastHealZone = this;
+		}
+    	statistics stat = other.gameObject.GetComponent<statistics>();
+        if (stat && other.isTrigger == false)
+        	listToHeal.Add(stat);
+    }
+
+	void OnTriggerExit2D(Collider2D other)
     {
     	statistics stat = other.gameObject.GetComponent<statistics>();
-        if (stat && stat.PVActu < stat.PV && other.isTrigger == false && time != old_time)
-        	stat.PVActu++;
+        if (stat && other.isTrigger == false) {
+			for (int i = 0 ; i < listToHeal.Count ; i++) {
+				if (listToHeal[i] == stat) {
+					listToHeal.RemoveAt(i);
+					break ;
+				}
+			}
+		}
     }
 }

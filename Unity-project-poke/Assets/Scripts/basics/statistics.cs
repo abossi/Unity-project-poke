@@ -8,6 +8,8 @@ public enum XPCourbe {None, Rapide, Moyenne, Parabolique, Lente, Erratique, Fluc
 
 public class statistics : MonoBehaviour {
 
+	public bool autoDestroy = true;
+
 	public int PVBasic = 35;
 	public int attaqueBasic = 55;
 	public int defenseBasic = 40;
@@ -101,8 +103,10 @@ public class statistics : MonoBehaviour {
 			PVText.text = PVActu.ToString() + " / " + PV.ToString();
 		}
 		else if (PV > PVActu) {
-			if (!lifeBarInstance)
+			if (!lifeBarInstance) {
 				lifeBarInstance = Instantiate(lifeBar, transform);
+				lifeBarInstance.transform.localScale = new Vector3(GetComponent<Renderer>().bounds.size.x / 0.16f, 0.2f, 1);
+			}
 			lifeBarInstance.transform.GetChild(0).localScale = new Vector3((float)PVActu / (float)PV, 1, 1);
 		}
 		else if (lifeBarInstance)
@@ -139,7 +143,8 @@ public class statistics : MonoBehaviour {
 
 		if (PVActu == 0 && !lifeInGUI) {
 			enemy.XPActu += ((XPBasic * niveau) / 7);
-			Destroy(gameObject);
+			if (autoDestroy)
+				Destroy(gameObject);
 			return ;
 		}
 	}
