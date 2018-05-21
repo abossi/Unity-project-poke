@@ -39,6 +39,7 @@ public class Batiment : MonoBehaviour {
 			dresseurCount--;
 			stat.PVActu = stat.PV;
 			old_pv = stat.PVActu;
+			dresseurs[dresseurCount].Orientation();
 			dresseurs[dresseurCount].transform.gameObject.SetActive(false);
 			dresseurs[dresseurCount].transform.position = initialPosDresseur;
 			dresseurCount = 0;

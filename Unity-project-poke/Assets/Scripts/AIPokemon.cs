@@ -20,6 +20,12 @@ public class AIPokemon : MonoBehaviour {
 	}
 
 	void Orientation() {
+
+		for (int i = 0 ; i < 4 ; i++) {
+			if (attaques[i] && attaques[i].isRunning)
+				return ;
+		}
+
 		if (agro) {
 			Vector3 pz = agro.transform.position;
 			pz.z = 0;
@@ -47,7 +53,7 @@ public class AIPokemon : MonoBehaviour {
 
 		if (dist <= 0.3f && dist >= 0.2f) {
 			move.Moving(Vector3.zero);
-			attaques[0].Fire();
+			attaques[0].Fire("");
 		}
 		else
 			move.Moving(vec);

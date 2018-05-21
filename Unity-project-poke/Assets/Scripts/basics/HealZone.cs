@@ -20,7 +20,7 @@ public class HealZone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		old_time = time;
+/*		old_time = time;
 		time = (int)Time.time;
         if (time != old_time) {
 			for (int i = 0 ; i < listToHeal.Count ; i++) {
@@ -28,7 +28,7 @@ public class HealZone : MonoBehaviour {
 					listToHeal[i].PVActu++;
 				}
 			}
-		}
+		}*/
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

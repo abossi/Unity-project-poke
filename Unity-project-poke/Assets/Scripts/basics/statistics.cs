@@ -121,6 +121,7 @@ public class statistics : MonoBehaviour {
 				XPActu -= XP;
 				niveau++;
 				CalculStatistiques();
+				PVActu = PV;
 			}
 			XPSlider.maxValue = XP;
 			XPSlider.value = XPActu;

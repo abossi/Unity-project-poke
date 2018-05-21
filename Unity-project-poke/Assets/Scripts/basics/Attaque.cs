@@ -4,13 +4,15 @@ using UnityEngine;
 
 public enum Categorie {Physique, Special, Statut};
 
-public abstract class Attaque : MonoBehaviour {
+public class Attaque : MonoBehaviour {
 
 	public PhysicType type;
 	public Categorie categorie;
 	public int PP;
 	public int puissance;
 	public int precision;
+	[HideInInspector]public bool isRunning = false;
+	public Sprite spriteGUI;
 
 	public Move pers;
 
@@ -25,5 +27,6 @@ public abstract class Attaque : MonoBehaviour {
 	void Update () {
 	}
 
-	public abstract void Fire();
+	public virtual void Fire(string buttonPressed) {
+	}
 }

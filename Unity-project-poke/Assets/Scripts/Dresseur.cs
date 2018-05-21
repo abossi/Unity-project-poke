@@ -19,7 +19,7 @@ public class Dresseur : MonoBehaviour {
 		Orientation();
 	}
 
-	void Orientation() {
+	public void Orientation() {
 		if (agro && agro.GetComponent<perso>().justDead) {
 			agro = null;
 			pokemonCount = 0;
@@ -56,12 +56,12 @@ public class Dresseur : MonoBehaviour {
 		if (dist < 1)
 			vec = -vec;
 
-		if (dist >= 1 && dist <= 1.5f)
+		if (dist >= 0.8 && dist <= 1.1f)
 			move.Moving(Vector3.zero);
 		else
 			move.Moving(vec);
 
-		if ((pokemonCount == 0 || pokemons[pokemonCount - 1].PVActu == 0) && pokemons.Count != pokemonCount && dist <= 1.5f) {
+		if ((pokemonCount == 0 || pokemons[pokemonCount - 1].PVActu == 0) && pokemons.Count != pokemonCount && dist <= 1.1f) {
 			SendPoke((dist < 1) ? -vec : vec);
 		}
 		else if (pokemons.Count == pokemonCount && pokemonCount != 0 && pokemons[pokemonCount - 1].PVActu == 0) {
@@ -76,7 +76,7 @@ public class Dresseur : MonoBehaviour {
 		if (pokemonCount != 0) {
 			pokemons[pokemonCount - 1].transform.gameObject.SetActive(false);
 		}
-		pokemons[pokemonCount].transform.position += vec * 0.5f;
+		pokemons[pokemonCount].transform.position += vec * 0.2f;
 		pokemons[pokemonCount].transform.gameObject.SetActive(true);
 		pokemons[pokemonCount].GetComponent<AIPokemon>().agro = agro;
 		pokemons[pokemonCount].transform.SetParent(null);

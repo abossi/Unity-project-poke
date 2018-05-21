@@ -10,6 +10,7 @@ public class perso : MonoBehaviour {
 	[HideInInspector]public bool justDead = false;
 	private statistics stat;
 	public Attaque[] attaques = new Attaque[4];
+	public Image[] images = new Image[4];
 
 	private Text zoneText;
 	private Text destrucText;
@@ -20,15 +21,57 @@ public class perso : MonoBehaviour {
 		stat = GetComponent<statistics>();
 		zoneText = GameObject.Find("ZoneText").GetComponent<Text>();
 		destrucText = GameObject.Find("DestrucText").GetComponent<Text>();
+		for (int i = 0 ; i < 4 ; i++) {
+			if (attaques[i]) {
+				images[i].sprite = attaques[i].spriteGUI;
+				images[i].color = new Color(255, 255, 255, 1);
+			}
+			images[i].transform.GetChild(0).GetComponent<Text>().text = "";
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//Orientation();
 		Move();
-		if (Input.GetKeyDown("1"))
-			attaques[0].Fire();
+		if (Input.GetKey("1") && !attaques[0].isRunning)
+			attaques[0].Fire("1");
+		if (Input.GetKeyDown("space")) {
+			Interaction();
+		}
 		UpdateZone();
+		CallDownAttaques();
+	}
+
+	void CallDownAttaques() {
+		for (int i = 0 ; i < 4 ; i++) {
+			if (attaques[i]) {
+				if (attaques[i].lastSend + 35f / (float)attaques[i].PP < Time.time) {
+					images[i].color = new Color(255, 255, 255, 1);
+					images[i].transform.GetChild(0).GetComponent<Text>().text = "";
+				}
+				else {
+					if ((attaques[i].lastSend + 35f / (float)attaques[i].PP) - Time.time >= 1)
+						images[i].transform.GetChild(0).GetComponent<Text>().text = ((int)((attaques[i].lastSend + 35f / (float)attaques[i].PP) - Time.time)).ToString();
+					else
+						images[i].transform.GetChild(0).GetComponent<Text>().text = ((int)(100f * ((attaques[i].lastSend + 35f / (float)attaques[i].PP) - Time.time))).ToString();
+					images[i].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+				}
+			}
+		}
+	}
+
+	void Interaction() {
+    	RaycastHit2D[] hits = Physics2D.RaycastAll(move.Center(), Vector3.back, 0.08f);
+    	for (int i = 0 ; i < hits.Length ; i++) {
+    		if (hits[i].transform.gameObject.layer == LayerMask.NameToLayer("herbe")) {
+    			Destroy(hits[i].transform.gameObject);
+    			stat.PVActu += (stat.PV * 10) / 100;
+    			if (stat.PVActu > stat.PV)
+    				stat.PVActu = stat.PV;
+    			break;
+    		}
+    	}
 	}
 
 	void Orientation() {
@@ -47,6 +90,11 @@ public class perso : MonoBehaviour {
 			return ;
 		}
 		justDead = false;
+
+		for (int i = 0 ; i < 4 ; i++) {
+			if (attaques[i] && attaques[i].isRunning)
+				return ;
+		}
 
 		Vector3 vec = Vector3.zero;
 		if (Input.GetKeyDown("up"))
@@ -91,7 +139,7 @@ public class perso : MonoBehaviour {
     }
 
     void UpdateZone() {
-    	RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector3.back, 0.08f);
+    	RaycastHit2D[] hits = Physics2D.RaycastAll(move.Center(), Vector3.back, 0.08f);
     	for (int i = 0 ; i < hits.Length ; i++) {
     		if (hits[i].transform.gameObject.layer == LayerMask.NameToLayer("Zone")) {
     			zoneText.text = hits[i].transform.gameObject.GetComponent<Zone>().name;
