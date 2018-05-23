@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class SelectPokemonStart : MonoBehaviour {
 
 	public GameObject prefabPoke;
+	public GameObject prefabPokeParent;
+
+	public List<GameObject> listPrefabPoke = new List<GameObject>();
+	public List<GameObject> listPrefabPokeParent = new List<GameObject>();
 
 	// Use this for initialization
 	void Start () {
@@ -17,8 +21,10 @@ public class SelectPokemonStart : MonoBehaviour {
 		
 	}
 
-	public void StartKanto(GameObject prefab) {
-		prefabPoke = prefab;
+	public void StartKanto(int prefabNum) {
+		prefabPoke = listPrefabPoke[prefabNum];
+		prefabPokeParent = listPrefabPokeParent[prefabNum];
+		
 		DontDestroyOnLoad(gameObject);
 		SceneManager.LoadScene("kanto");
 	}

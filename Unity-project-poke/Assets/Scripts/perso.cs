@@ -40,6 +40,10 @@ public class perso : MonoBehaviour {
 		GameObject inst = Instantiate(starter.transform.GetChild(0), transform).gameObject;
 		attaques[0] = inst.GetComponent<Attaque>();
 		attaques[0].pers = move;
+
+		GameObject parents = GameObject.Find("Starter").GetComponent<SelectPokemonStart>().prefabPokeParent;
+		GameObject.Find("papa").GetComponent<SpriteRenderer>().sprite = parents.GetComponent<SpriteRenderer>().sprite;
+		GameObject.Find("maman").GetComponent<SpriteRenderer>().sprite = parents.GetComponent<SpriteRenderer>().sprite;
 		Destroy(GameObject.Find("Starter"));
 
 		for (int i = 0 ; i < 4 ; i++) {
