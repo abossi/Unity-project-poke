@@ -41,10 +41,8 @@ public class Charge : Attaque {
 					puissance = puissanceBase;
 					power = 0;
 				}
-			}
-
-			if (power == 0)
 				isRunning = false;
+			}
 		}
 	}
 

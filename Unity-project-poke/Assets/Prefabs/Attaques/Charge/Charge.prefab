@@ -87,6 +87,7 @@ MonoBehaviour:
   puissance: 40
   precision: 100
   isRunning: 0
+  spriteGUI: {fileID: 21300000, guid: a747a9f7b938248e69975b643de5e4c2, type: 3}
   pers: {fileID: 0}
   lastSend: 0
   spriteZone: {fileID: 212540885676256978}

@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start_menu.unity
+    guid: 162346daff96549d889f40e4a705856c
+  - enabled: 1
+    path: Assets/Scenes/kanto.unity
+    guid: 8c48d699c73064cc98dc2189473de52b

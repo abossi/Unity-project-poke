@@ -76,7 +76,7 @@ public class Dresseur : MonoBehaviour {
 		if (pokemonCount != 0) {
 			pokemons[pokemonCount - 1].transform.gameObject.SetActive(false);
 		}
-		pokemons[pokemonCount].transform.position += vec * 0.2f;
+		pokemons[pokemonCount].transform.position = transform.position + vec * 0.2f;
 		pokemons[pokemonCount].transform.gameObject.SetActive(true);
 		pokemons[pokemonCount].GetComponent<AIPokemon>().agro = agro;
 		pokemons[pokemonCount].transform.SetParent(null);

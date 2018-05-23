@@ -80,7 +80,7 @@ public class statistics : MonoBehaviour {
 		ShowXP();
 	}
 
-	void CalculStatistiques() {
+	public void CalculStatistiques() {
 		PV = ((2 * PVBasic + PVIV + PVEV / 4) * niveau) / 100 + niveau + 10;
 
 		attaque = ((2 * attaqueBasic + attaqueIV + attaqueEV / 4) * niveau) / 100 + 5;
@@ -92,6 +92,11 @@ public class statistics : MonoBehaviour {
 		switch(courbeXP) {
 			case XPCourbe.Moyenne:
 				XP = niveau * niveau * niveau;
+				break;
+			case XPCourbe.Parabolique:
+				XP = (int)(1.2f * niveau * niveau * niveau - 15f * niveau * niveau + 100f * niveau - 140f);
+				if (XP <= 0)
+					XP = 1;
 				break;
 		}
 	}

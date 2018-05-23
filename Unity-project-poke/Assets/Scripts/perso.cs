@@ -17,10 +17,31 @@ public class perso : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		move = GetComponent<Move>();
 		stat = GetComponent<statistics>();
 		zoneText = GameObject.Find("ZoneText").GetComponent<Text>();
 		destrucText = GameObject.Find("DestrucText").GetComponent<Text>();
+
+		GameObject starter = GameObject.Find("Starter").GetComponent<SelectPokemonStart>().prefabPoke;
+		stat.PVBasic = starter.GetComponent<statistics>().PVBasic;
+		stat.attaqueBasic = starter.GetComponent<statistics>().attaqueBasic;
+		stat.defenseBasic = starter.GetComponent<statistics>().defenseBasic;
+		stat.attaqueSpeBasic = starter.GetComponent<statistics>().attaqueSpeBasic;
+		stat.defenseSpeBasic = starter.GetComponent<statistics>().defenseSpeBasic;
+		stat.vitesseBasic = starter.GetComponent<statistics>().vitesseBasic;
+		stat.XPBasic = starter.GetComponent<statistics>().XPBasic;
+		stat.courbeXP = starter.GetComponent<statistics>().courbeXP;
+		stat.type1 = starter.GetComponent<statistics>().type1;
+		stat.type2 = starter.GetComponent<statistics>().type2;
+		stat.niveau = 1;
+		GetComponent<Animator>().runtimeAnimatorController = starter.GetComponent<Animator>().runtimeAnimatorController;
+		stat.CalculStatistiques();
+		GameObject inst = Instantiate(starter.transform.GetChild(0), transform).gameObject;
+		attaques[0] = inst.GetComponent<Attaque>();
+		attaques[0].pers = move;
+		Destroy(GameObject.Find("Starter"));
+
 		for (int i = 0 ; i < 4 ; i++) {
 			if (attaques[i]) {
 				images[i].sprite = attaques[i].spriteGUI;
@@ -34,8 +55,14 @@ public class perso : MonoBehaviour {
 	void Update () {
 		//Orientation();
 		Move();
-		if (Input.GetKey("1") && !attaques[0].isRunning)
+		if (Input.GetKey("1") && attaques[0] && !attaques[0].isRunning)
 			attaques[0].Fire("1");
+		if (Input.GetKey("2") && attaques[1] && !attaques[1].isRunning)
+			attaques[1].Fire("2");
+		if (Input.GetKey("3") && attaques[2] && !attaques[2].isRunning)
+			attaques[2].Fire("3");
+		if (Input.GetKey("4") && attaques[3] && !attaques[3].isRunning)
+			attaques[3].Fire("4");
 		if (Input.GetKeyDown("space")) {
 			Interaction();
 		}
