@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class HealZone : MonoBehaviour {
 
-	int time;
-	int old_time;
 	List<statistics> listToHeal = new List<statistics>();
 
 	// Use this for initialization
 	void Start () {
-		time = (int)Time.time;
-		old_time = time;
 	}
 	
 	// Update is called once per frame

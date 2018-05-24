@@ -5,14 +5,14 @@ using UnityEngine;
 public class Zone : MonoBehaviour {
 
 	public int destruc = 0;
-	public string name;
+	public string nameZone;
 	public GameObject folderObstacles;
 	private int obstaclesTotal;
 	private int obstaclesActu;
 
 	// Use this for initialization
 	void Start () {
-		name = gameObject.name;
+		nameZone = gameObject.name;
 		obstaclesTotal = folderObstacles.transform.childCount;
 		obstaclesActu = obstaclesTotal;
 	}

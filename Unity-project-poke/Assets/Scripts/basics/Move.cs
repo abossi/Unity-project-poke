@@ -5,13 +5,13 @@ using UnityEngine;
 public class Move : MonoBehaviour {
 
 	private Animator animator;
-	private CircleCollider2D collider;
+	private CircleCollider2D collide;
 	private statistics stat;
 
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator>();
-		collider = GetComponent<CircleCollider2D>();
+		collide = GetComponent<CircleCollider2D>();
 		stat = GetComponent<statistics>();
 		animator.speed = 0;
 	}
@@ -63,10 +63,10 @@ public class Move : MonoBehaviour {
 	}
 
 	public Vector3 Center() {
-		return transform.position + new Vector3(collider.offset.x, collider.offset.y, 0);
+		return transform.position + new Vector3(collide.offset.x, collide.offset.y, 0);
 	}
 
 	public float Radius() {
-		return collider.radius;
+		return collide.radius;
 	}
 }

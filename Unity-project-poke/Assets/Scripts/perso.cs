@@ -12,8 +12,15 @@ public class perso : MonoBehaviour {
 	public Attaque[] attaques = new Attaque[4];
 	public Image[] images = new Image[4];
 
+	public Text textChat;
+	public GameObject contentChat;
+
 	private Text zoneText;
 	private Text destrucText;
+
+	private GameObject starter;
+
+	public Pokemon pokemonType;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +30,8 @@ public class perso : MonoBehaviour {
 		zoneText = GameObject.Find("ZoneText").GetComponent<Text>();
 		destrucText = GameObject.Find("DestrucText").GetComponent<Text>();
 
-		GameObject starter = GameObject.Find("Starter").GetComponent<SelectPokemonStart>().prefabPoke;
+		starter = GameObject.Find("Starter").GetComponent<SelectPokemonStart>().prefabPoke;
+		pokemonType = (Pokemon)GameObject.Find("Starter").GetComponent<SelectPokemonStart>().pokemonType;
 		stat.PVBasic = starter.GetComponent<statistics>().PVBasic;
 		stat.attaqueBasic = starter.GetComponent<statistics>().attaqueBasic;
 		stat.defenseBasic = starter.GetComponent<statistics>().defenseBasic;
@@ -100,6 +108,16 @@ public class perso : MonoBehaviour {
     			stat.PVActu += (stat.PV * 10) / 100;
     			if (stat.PVActu > stat.PV)
     				stat.PVActu = stat.PV;
+    			break;
+    		}
+    		if (hits[i].transform.gameObject.layer == LayerMask.NameToLayer("Coin")) {
+    			Coin coin = hits[i].transform.gameObject.GetComponent<Coin>();
+    			Text inst = Instantiate(textChat, contentChat.transform);
+
+        		PlayerPrefs.SetInt(coin.pokemon + "Coin", PlayerPrefs.GetInt(coin.pokemon + "Coin") + coin.quantity);
+    			inst.text = coin.pokemon + " coin X " + coin.quantity.ToString() + " => " + PlayerPrefs.GetInt(coin.pokemon + "Coin").ToString();
+    			
+    			Destroy(hits[i].transform.gameObject);
     			break;
     		}
     	}

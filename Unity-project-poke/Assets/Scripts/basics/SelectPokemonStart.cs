@@ -7,6 +7,7 @@ public class SelectPokemonStart : MonoBehaviour {
 
 	public GameObject prefabPoke;
 	public GameObject prefabPokeParent;
+	public int pokemonType;
 
 	public List<GameObject> listPrefabPoke = new List<GameObject>();
 	public List<GameObject> listPrefabPokeParent = new List<GameObject>();
@@ -24,6 +25,7 @@ public class SelectPokemonStart : MonoBehaviour {
 	public void StartKanto(int prefabNum) {
 		prefabPoke = listPrefabPoke[prefabNum];
 		prefabPokeParent = listPrefabPokeParent[prefabNum];
+		pokemonType = prefabNum;
 		
 		DontDestroyOnLoad(gameObject);
 		SceneManager.LoadScene("kanto");

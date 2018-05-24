@@ -9,12 +9,12 @@ public class Griffe : Attaque {
 	private float chargement = 0.5f;
 	public SpriteRenderer spriteZone;
 	private string buttonPressed = "";
-	private CircleCollider2D collider;
+	private CircleCollider2D collide;
 	private List<statistics> listColliders = new List<statistics>();
 
 	// Use this for initialization
 	void Start () {
-		collider = GetComponent<CircleCollider2D>();
+		collide = GetComponent<CircleCollider2D>();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +22,7 @@ public class Griffe : Attaque {
 		if (isRunning) {
 			if ((start + chargement) > Time.time && !(buttonPressed != "" && Input.GetKeyUp(buttonPressed))) {
 				spriteZone.transform.localScale = new Vector3(1 + (((Time.time - start) / chargement)), 1 + (((Time.time - start) / chargement)), 1);
-				collider.radius = 0.08f * (1 + (((Time.time - start) / chargement)));
+				collide.radius = 0.08f * (1 + (((Time.time - start) / chargement)));
 				return ;
 			}
 			else {
@@ -47,7 +47,7 @@ public class Griffe : Attaque {
 			spriteZone.gameObject.SetActive(true);
 			transform.rotation = Quaternion.Euler(0f, 0f, dir.x * 90f + ((dir.y == 1) ? 180f : 0f));
 			spriteZone.transform.localScale = new Vector3(1, 1, 1);
-			collider.radius = 0.08f;
+			collide.radius = 0.08f;
 		}
 	}
 

@@ -44,21 +44,23 @@ public class statistics : MonoBehaviour {
 	public int PVActu = 35;
 	public int XPActu = 35;
 
-	private int PVIV = 31;
-	private int attaqueIV = 31;
-	private int defenseIV = 31;
-	private int attaqueSpeIV = 31;
-	private int defenseSpeIV = 31;
-	private int vitesseIV = 31;
+	[HideInInspector]public int PVIV = 0;
+	[HideInInspector]public int attaqueIV = 0;
+	[HideInInspector]public int defenseIV = 0;
+	[HideInInspector]public int attaqueSpeIV = 0;
+	[HideInInspector]public int defenseSpeIV = 0;
+	[HideInInspector]public int vitesseIV = 0;
 
-	private int PVEV = 1;
-	private int attaqueEV = 1;
-	private int defenseEV = 1;
-	private int attaqueSpeEV = 1;
-	private int defenseSpeEV = 1;
-	private int vitesseEV = 1;
+	[HideInInspector]public int PVEV = 0;
+	[HideInInspector]public int attaqueEV = 0;
+	[HideInInspector]public int defenseEV = 0;
+	[HideInInspector]public int attaqueSpeEV = 0;
+	[HideInInspector]public int defenseSpeEV = 0;
+	[HideInInspector]public int vitesseEV = 0;
 
 	public int niveau = 1;
+
+	public List<Coin> coins;
 
 	// Use this for initialization
 	void Start () {
@@ -148,9 +150,20 @@ public class statistics : MonoBehaviour {
 			PVActu = 0;
 
 		if (PVActu == 0 && !lifeInGUI) {
+			for (int i = 0 ; i < coins.Count ; i++) {
+				coins[i].gameObject.SetActive(true);
+				coins[i].gameObject.transform.SetParent(null);
+			}
 			enemy.XPActu += ((XPBasic * niveau) / 7);
-			if (autoDestroy)
+			if (autoDestroy) {
+				for (int i = transform.childCount - 1 ; i >= 0 ; i--) {
+					if (transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).gameObject.GetComponent<statistics>()) {
+						transform.GetChild(i).SetParent(null);
+						transform.GetChild(i).gameObject.GetComponent<statistics>().autoDestroy = true;
+					}
+				}
 				Destroy(gameObject);
+			}
 			return ;
 		}
 	}
