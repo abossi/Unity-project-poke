@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 114475964662519198}
   - component: {fileID: 114282167289267066}
   m_Layer: 0
-  m_Name: reptincel
+  m_Name: Reptincel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -344,6 +344,18 @@ MonoBehaviour:
   XP: 90
   PVActu: 35
   XPActu: 35
+  PVIV: 0
+  attaqueIV: 0
+  defenseIV: 0
+  attaqueSpeIV: 0
+  defenseSpeIV: 0
+  vitesseIV: 0
+  PVEV: 0
+  attaqueEV: 0
+  defenseEV: 0
+  attaqueSpeEV: 0
+  defenseSpeEV: 0
+  vitesseEV: 0
   niveau: 20
   coins:
   - {fileID: 114047979343791966}

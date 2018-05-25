@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 114475964662519198}
   - component: {fileID: 114282167289267066}
   m_Layer: 0
-  m_Name: bulbizarre
+  m_Name: Bulbizarre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bde569cf0634da1b3ff8d01eda84a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pokemon: bulbizarre
+  pokemon: 0
   quantity: 1
 --- !u!114 &114475964662519198
 MonoBehaviour:
@@ -307,6 +307,18 @@ MonoBehaviour:
   XP: 90
   PVActu: 35
   XPActu: 35
+  PVIV: 0
+  attaqueIV: 0
+  defenseIV: 0
+  attaqueSpeIV: 0
+  defenseSpeIV: 0
+  vitesseIV: 0
+  PVEV: 0
+  attaqueEV: 0
+  defenseEV: 0
+  attaqueSpeEV: 0
+  defenseSpeEV: 0
+  vitesseEV: 0
   niveau: 2
   coins:
   - {fileID: 114444382815012810}

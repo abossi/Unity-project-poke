@@ -21,6 +21,7 @@ public class perso : MonoBehaviour {
 	private GameObject starter;
 
 	public Pokemon pokemonType;
+	public StatsPanel statsPanel;
 
 	// Use this for initialization
 	void Start () {
@@ -116,6 +117,8 @@ public class perso : MonoBehaviour {
 
         		PlayerPrefs.SetInt(coin.pokemon + "Coin", PlayerPrefs.GetInt(coin.pokemon + "Coin") + coin.quantity);
     			inst.text = coin.pokemon + " coin X " + coin.quantity.ToString() + " => " + PlayerPrefs.GetInt(coin.pokemon + "Coin").ToString();
+
+    			statsPanel.RefreshVal();
     			
     			Destroy(hits[i].transform.gameObject);
     			break;

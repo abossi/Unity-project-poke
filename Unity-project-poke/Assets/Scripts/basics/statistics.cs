@@ -91,16 +91,24 @@ public class statistics : MonoBehaviour {
 		defenseSpe = ((2 * defenseSpeBasic + defenseSpeIV + defenseSpeEV / 4) * niveau) / 100 + 5;
 		vitesse = ((2 * vitesseBasic + vitesseIV + vitesseEV / 4) * niveau) / 100 + 5;
 
+		XP = CalculCourbe(niveau);
+	}
+
+	public int CalculCourbe(int lvl) {
+
+		int result = 0;
+
 		switch(courbeXP) {
 			case XPCourbe.Moyenne:
-				XP = niveau * niveau * niveau;
+				result = lvl * lvl * lvl;
 				break;
 			case XPCourbe.Parabolique:
-				XP = (int)(1.2f * niveau * niveau * niveau - 15f * niveau * niveau + 100f * niveau - 140f);
-				if (XP <= 0)
-					XP = 1;
+				result = (int)(1.2f * lvl * lvl * lvl - 15f * lvl * lvl + 100f * lvl - 140f);
+				if (result <= 0)
+					result = 1;
 				break;
 		}
+		return result;
 	}
 
 	void ShowLife() {

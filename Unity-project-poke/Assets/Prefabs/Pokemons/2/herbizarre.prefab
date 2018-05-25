@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 114475964662519198}
   - component: {fileID: 114282167289267066}
   m_Layer: 0
-  m_Name: herbizarre
+  m_Name: Herbizarre
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
   puissance: 40
   precision: 100
   isRunning: 0
-  spriteGUI: {fileID: 0}
+  spriteGUI: {fileID: 21300000, guid: a747a9f7b938248e69975b643de5e4c2, type: 3}
   pers: {fileID: 114475964662519198}
   lastSend: 0
   spriteZone: {fileID: 212576381062745270}
@@ -328,6 +328,18 @@ MonoBehaviour:
   XP: 90
   PVActu: 35
   XPActu: 35
+  PVIV: 0
+  attaqueIV: 0
+  defenseIV: 0
+  attaqueSpeIV: 0
+  defenseSpeIV: 0
+  vitesseIV: 0
+  PVEV: 0
+  attaqueEV: 0
+  defenseEV: 0
+  attaqueSpeEV: 0
+  defenseSpeEV: 0
+  vitesseEV: 0
   niveau: 20
   coins:
   - {fileID: 114162233799042768}
