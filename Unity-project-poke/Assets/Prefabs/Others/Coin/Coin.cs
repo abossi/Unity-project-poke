@@ -6,6 +6,12 @@ public enum Pokemon {
 	Bulbizarre,
 	Salameche,
 	Carapuce,
+	Chenipan,
+	Aspicot,
+	Roucool,
+	Rattata,
+	Piafabec,
+	Abo,
 	Pikachu
 };
 

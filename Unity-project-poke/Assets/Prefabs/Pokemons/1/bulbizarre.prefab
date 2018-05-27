@@ -91,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1824562823608358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7806203, y: -347.13153, z: 0}
+  m_LocalPosition: {x: -5.598951, y: -347.72888, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4420401625601912}
@@ -106,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148221178048508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4833332852681582}
@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532971199479588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -0.09, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 4026626238467856}
@@ -171,7 +171,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08, y: -0.1}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
 --- !u!61 &61271142404533750
@@ -298,6 +298,7 @@ MonoBehaviour:
   type2: 12
   lifeInGUI: 0
   lifeBar: {fileID: 1166052619397436, guid: 584286492f6f84412997359ea69fe027, type: 2}
+  lifeBarPosition: {x: -0.08, y: 0.08, z: 0}
   PV: 35
   attaque: 55
   defense: 40

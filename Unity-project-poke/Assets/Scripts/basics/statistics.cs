@@ -30,6 +30,7 @@ public class statistics : MonoBehaviour {
 	private Text XPText;
 	private Text niveauText;
 	public GameObject lifeBar;
+	public Vector3 lifeBarPosition = Vector3.zero;
 
 	private GameObject lifeBarInstance = null;
 
@@ -120,6 +121,7 @@ public class statistics : MonoBehaviour {
 		else if (PV > PVActu) {
 			if (!lifeBarInstance) {
 				lifeBarInstance = Instantiate(lifeBar, transform);
+				lifeBarInstance.transform.Translate(lifeBarPosition);
 				lifeBarInstance.transform.localScale = new Vector3(GetComponent<Renderer>().bounds.size.x / 0.16f, 0.2f, 1);
 			}
 			lifeBarInstance.transform.GetChild(0).localScale = new Vector3((float)PVActu / (float)PV, 1, 1);
